@@ -5,6 +5,10 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	entry: './example/App.js',
+	output: {
+		filename: 'main.js',
+		path: __dirname + '/docs'
+	},
 	module: {
 		rules: [
 			{
