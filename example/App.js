@@ -44,7 +44,7 @@ ReactDOM.render(<>
 	<header>
 		<h1>rmce</h1>
 		<p>React mini code editor</p>
-		<a href='https://midnightcoder-pro.github.io/rmce'>github</a>
+		<a href='https://github.com/midnightcoder-pro/rmce'>github</a>
 	</header>
 	<p>Install</p>
 	<div id='install'>
