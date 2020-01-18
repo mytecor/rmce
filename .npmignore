@@ -2,3 +2,6 @@ example/
 /index.html
 /.gitignore
 /.gitattributes
+/.babelrc
+/README.md
+/webpack.config.js
