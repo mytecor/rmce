@@ -1,6 +1,6 @@
 {
   "name": "rmce",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React mini code editor",
   "main": "./index.js",
   "author": "midnightcoder",
@@ -12,9 +12,9 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-syntax-jsx": "^7.8.3",
     "@babel/plugin-transform-react-jsx": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
     "autoprefixer-stylus": "^1.0.0",
     "babel-loader": "^8.0.6",
+    "babel-preset-minify": "^0.5.1",
     "css-loader": "^3.4.2",
     "mini-css-extract-plugin": "^0.9.0",
     "prismjs": "^1.19.0",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "babel ./src -d ./ & stylus ./src -o ./",
+    "build": "babel ./src -d ./ & stylus -c ./src -o ./",
     "prepublish": "yarn build"
   },
   "keywords": [
