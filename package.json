@@ -27,8 +27,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "docs": "webpack --mode=production",
-    "build": "babel ./src -d ./ & stylus ./src -o ./"
+    "build": "webpack --mode=production & babel ./src -d ./ & stylus ./src -o ./"
   },
   "keywords": [
     "react",

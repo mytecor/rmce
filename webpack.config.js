@@ -21,12 +21,7 @@ module.exports = {
 							reloadAll: true
 						}
 					},
-					{
-						loader: 'css-loader',
-						options: {
-							modules: false
-						}
-					},
+					'css-loader',
 					{
 						loader: 'stylus-loader',
 						options: {
