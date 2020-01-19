@@ -3,5 +3,4 @@ example/
 /.gitignore
 /.gitattributes
 /.babelrc
-/README.md
 /webpack.config.js

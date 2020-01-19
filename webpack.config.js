@@ -6,7 +6,7 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
 	entry: './example/App.js',
 	output: {
-		filename: 'main.js',
+		filename: 'bundle.js',
 		path: __dirname + '/example'
 	},
 	module: {
@@ -39,7 +39,7 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '[name].css',
+			filename: 'bundle.css',
 		}),
 		new webpack.ProvidePlugin({
 			React: 'react',
@@ -47,7 +47,8 @@ module.exports = {
 		})
 	],
 	devServer: {
-		contentBase: './example',
+		writeToDisk: true,
+		contentBase: './',
 		inline: true,
 		hot: true,
 		port: 80

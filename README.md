@@ -7,7 +7,7 @@
 ```jsx
 import CodeEditor from 'rmce'
 // editor theme
-import '~rmce/index.css'
+import 'rmce/index.css'
 import Prism from 'prismjs'
 // add jsx language support
 import 'prismjs/components/prism-jsx'
