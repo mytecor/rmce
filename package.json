@@ -1,6 +1,6 @@
 {
   "name": "rmce",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React mini code editor",
   "main": "./index.js",
   "author": "midnightcoder",
