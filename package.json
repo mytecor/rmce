@@ -1,14 +1,10 @@
 {
   "name": "rmce",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React mini code editor",
   "main": "./index.js",
   "author": "midnightcoder",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/midnightcoder-pro/rmce.git"
-  },
   "homepage": "https://midnightcoder-pro.github.io/rmce",
   "devDependencies": {
     "@babel/cli": "^7.8.3",
