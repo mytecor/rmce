@@ -47,8 +47,7 @@ module.exports = {
 		})
 	],
 	devServer: {
-		writeToDisk: true,
-		contentBase: './',
+		publicPath: '/example/',
 		inline: true,
 		hot: true,
 		port: 80
