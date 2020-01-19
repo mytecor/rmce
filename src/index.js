@@ -3,7 +3,7 @@ import React from 'react'
 
 let selection = document.getSelection()
 
-export default React.forwardRef(function CodeEditor({value, onChange, style, highlight, ...props}, ref) {
+export default React.forwardRef(function CodeEditor({value, onChange, highlight, ...props}, ref) {
 	let pos = React.useRef(0)
 	ref = ref || React.useRef()
 
