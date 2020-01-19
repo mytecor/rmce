@@ -1,6 +1,8 @@
 # rmce
 ###### React mini code editor
 
+[In action](https://midnightcoder-pro.github.io/rmce)
+
 #### Usage example (with prismjs)
 ```jsx
 import CodeEditor from 'rmce'
