@@ -1,14 +1,15 @@
 {
   "name": "rmce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React mini code editor",
   "main": "./index.js",
   "author": "midnightcoder",
-  "license": "MIT",  
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/midnightcoder-pro/rmce"
+    "url": "git+https://github.com/midnightcoder-pro/rmce.git"
   },
+  "homepage": "https://midnightcoder-pro.github.io/rmce",
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
@@ -31,7 +32,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack --mode=production & babel ./src -d ./ & stylus ./src -o ./"
+    "build": "webpack --mode=production & babel ./src -d ./ & stylus ./src -o ./",
+    "prepublish": "yarn build"
   },
   "keywords": [
     "react",
