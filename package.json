@@ -28,7 +28,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "webpack --mode=production & babel ./src -d ./ & stylus ./src -o ./",
+    "build": "babel ./src -d ./ & stylus ./src -o ./",
     "prepublish": "yarn build"
   },
   "keywords": [
