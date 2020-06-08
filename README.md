@@ -20,6 +20,7 @@ function MyFancyEditor() {
 		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
 		value={code}
 		onChange={setCode}
+		readOnly
 		/>
 }
 ```
@@ -29,3 +30,4 @@ function MyFancyEditor() {
 - `value` (String): Current value of the editor i.e. the code to display. This must be a controlled prop
 - `onChange` (Function): Callback which is called when the value of the editor changes
 - `highlight` (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs
+- `readOnly` (Boolean): Disables code editing

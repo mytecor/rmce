@@ -1,9 +1,8 @@
 
-let webpack = require('webpack')
-
-let MiniCssExtractPlugin = require('mini-css-extract-plugin')
+let CssExtract = require('extract-css-chunks-webpack-plugin')
 
 module.exports = {
+	stats: 'minimal',
 	entry: './example/App.js',
 	output: {
 		filename: 'bundle.js',
@@ -14,21 +13,15 @@ module.exports = {
 			{
 				test: /\.styl$/,
 				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							hmr: true,
-							reloadAll: true
-						}
-					},
+					CssExtract.loader,
 					'css-loader',
 					{
-						loader: 'stylus-loader',
+						loader: 'stylus-native-loader',
 						options: {
 							use: [require('autoprefixer-stylus')()]
 						}
 					}
-				],
+				]
 			},
 			{
 				test: /\.js$/,
@@ -38,12 +31,8 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new MiniCssExtractPlugin({
+		new CssExtract({
 			filename: 'bundle.css',
-		}),
-		new webpack.ProvidePlugin({
-			React: 'react',
-			ReactDOM: 'react-dom'
 		})
 	],
 	devServer: {

@@ -7,18 +7,13 @@ body
 
 p
 	margin: 10px 0
-
-.code-editor.inline
-	padding: 3px
-	display: inline-block
-	vertical-align: middle
 		
 #install
 	display: flex
 	flex-wrap: wrap
 	margin: -5px -5px
 	
-	code
+	.code-editor
 		flex: 1
 		margin: 5px
 		
@@ -27,6 +22,12 @@ p
 #props
 	margin: 0
 	padding-left: 25px
+	
+	.code-editor
+		padding: 3px
+		display: inline-block
+		vertical-align: middle
+	
 	li
 		margin: 5px 0
 

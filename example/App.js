@@ -1,4 +1,7 @@
 
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 import '../src/index.styl'
 import './main.styl'
 import CodeEditor from '../src'
@@ -36,8 +39,8 @@ function MyFancyEditor() {
 	</CodeEditor>
 }
 
-function Code({children, lang, inline}) {
-	return <code className={'code-editor' + (inline ? ' inline' : '')} dangerouslySetInnerHTML={{__html: lang? Prism.highlight(children, Prism.languages[lang]) : children}}/>
+function Code({children, lang}) {
+	return <CodeEditor readOnly className={'code-editor'} highlight={() => lang? Prism.highlight(children, Prism.languages[lang]) : children}/>
 }
 
 ReactDOM.render(<>
@@ -56,8 +59,9 @@ ReactDOM.render(<>
 	
 	<p>Props</p>
 	<ul id='props'>
-		<li><Code inline>value</Code> (String): Current value of the editor i.e. the code to display. This must be a controlled prop</li>
-		<li><Code inline>onChange</Code> (Function): Callback which is called when the value of the editor changes</li>
-		<li><Code inline>highlight</Code> (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs</li>
+		<li><Code>value</Code> (String): Current value of the editor i.e. the code to display. This must be a controlled prop</li>
+		<li><Code>onChange</Code> (Function): Callback which is called when the value of the editor changes</li>
+		<li><Code>highlight</Code> (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs</li>
+		<li><Code>readOnly</Code> (Boolean): Disables code editing</li>
 	</ul>
 </>, document.getElementById('root'))

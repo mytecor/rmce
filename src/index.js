@@ -3,7 +3,7 @@ import React from 'react'
 
 let selection = document.getSelection()
 
-export default React.forwardRef(function CodeEditor({value, onChange, highlight, ...props}, ref) {
+export default React.forwardRef(function CodeEditor({value, onChange, highlight, readOnly = false, ...props}, ref) {
 	let pos = React.useRef(0)
 	ref = ref || React.useRef()
 
@@ -53,7 +53,7 @@ export default React.forwardRef(function CodeEditor({value, onChange, highlight,
 
 	return <code {...props}
 		ref={ref}
-		contentEditable
+		contentEditable={!readOnly}
 		spellCheck='false'
 		dangerouslySetInnerHTML={{__html: highlight(value)}}
 		/>
