@@ -28,8 +28,7 @@
   },
   "scripts": {
     "dev": "webpack --mode=development -w",
-    "build": "webpack --mode=production & babel ./src -d ./ & stylus -c ./src -o ./",
-    "prepublish": "yarn build"
+    "build": "webpack --mode=production & babel ./src -d ./ & stylus -c ./src -o ./"
   },
   "keywords": [
     "react",
