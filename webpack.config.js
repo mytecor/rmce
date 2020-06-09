@@ -1,5 +1,6 @@
 
 let CssExtract = require('extract-css-chunks-webpack-plugin')
+let LiveReloadPlugin = require('webpack-livereload-plugin')
 
 module.exports = {
 	stats: 'minimal',
@@ -7,6 +8,9 @@ module.exports = {
 	output: {
 		filename: 'bundle.js',
 		path: __dirname + '/example'
+	},
+	watchOptions: {
+		poll: 1000
 	},
 	module: {
 		rules: [
@@ -31,14 +35,9 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new LiveReloadPlugin,
 		new CssExtract({
 			filename: 'bundle.css',
 		})
-	],
-	devServer: {
-		publicPath: '/example/',
-		inline: true,
-		hot: true,
-		port: 80
-	}
+	]
 }
