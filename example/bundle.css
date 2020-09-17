@@ -38,62 +38,62 @@
  * @author Oleg Dutchenko
  * @license MIT 2018
  */
-.code-editor .token.atrule,
-.code-editor .token.constant,
-.code-editor .token.function,
-.code-editor .token.important,
-.code-editor .token.boolean,
-.code-editor .token.keyword,
-.code-editor .token.symbol,
-.code-editor .token.id {
+.atrule,
+.constant,
+.function,
+.important,
+.boolean,
+.keyword,
+.symbol,
+.id {
   color: #c792ea;
 }
-.code-editor .token.attr-name,
-.code-editor .token.builtin,
-.code-editor .token.class {
+.attr-name,
+.builtin,
+.class {
   color: #ffcb6b;
 }
-.code-editor .token.comment,
-.code-editor .token.doctype,
-.code-editor .token.prolog {
+.comment,
+.doctype,
+.prolog {
   color: #616161;
 }
-.code-editor .token.inserted,
-.code-editor .token.property,
-.code-editor .token.cdata,
-.code-editor .token.char {
+.inserted,
+.property,
+.cdata,
+.char {
   color: #80cbc4;
 }
-.code-editor .token.operator,
-.code-editor .token.punctuation {
+.operator,
+.punctuation {
   color: #89ddff;
 }
-.code-editor .token.class-name,
-.code-editor .token.hexcode,
-.code-editor .token.regex {
+.class-name,
+.hexcode,
+.regex {
   color: #f2ff00;
 }
-.code-editor .token.attr-value,
-.code-editor .token.attribute,
-.code-editor .token.pseudo-class,
-.code-editor .token.pseudo-element,
-.code-editor .token.string {
+.attr-value,
+.attribute,
+.pseudo-class,
+.pseudo-element,
+.string {
   color: #a5e844;
 }
-.code-editor .token.number,
-.code-editor .token.unit {
+.number,
+.unit {
   color: #fd9170;
 }
-.code-editor .token.selector,
-.code-editor .token.variable,
-.code-editor .token.deleted,
-.code-editor .token.entity,
-.code-editor .token.tag,
-.code-editor .token.url {
+.selector,
+.variable,
+.deleted,
+.entity,
+.tag,
+.url {
   color: #f66;
 }
-.code-editor .token.important,
-.code-editor .token.id {
+.important,
+.id {
   font-weight: bold;
 }
 
