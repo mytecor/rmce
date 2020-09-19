@@ -3,23 +3,15 @@ import React from 'react'
 
 let selection = document.getSelection()
 
-export default React.forwardRef(function CodeEditor({value, onChange, highlight, readOnly = false, ...props}, ref) {
+function combineRefs(...args) {
+	return node => args.map(arg => arg && (typeof arg == 'object'? arg.current = node : arg(node)))
+}
+
+export default React.forwardRef(({children = '', value = children, onChange = () => {}, highlight, readOnly = false, ...props}, forwardedRef) => {
 	let pos = React.useRef(0)
-	ref = ref || React.useRef()
 
-	props.onInput = e => {
-		let code = e.target.textContent
-
-		if(!selection.anchorNode) return 0
-
-		let range = new Range
-		range.setStart(ref.current, 0)
-		range.setEnd(selection.anchorNode, selection.anchorOffset)
-
-		pos.current = range.toString().length
-
-		if(onChange) onChange(code)
-	}
+	let ref = React.useRef()
+	forwardedRef = combineRefs(ref, forwardedRef)
 
 	props.onKeyDown = e => {
 		let ch = e.key
@@ -28,6 +20,8 @@ export default React.forwardRef(function CodeEditor({value, onChange, highlight,
 			e.preventDefault()
 			if(ch == 'Tab') ch = '\t'
 			if(ch == 'Enter') ch = '\n'
+
+			// Insert char
 			let range = selection.getRangeAt(0)
 			range.deleteContents()
 			range.insertNode(new Text(ch))
@@ -35,7 +29,23 @@ export default React.forwardRef(function CodeEditor({value, onChange, highlight,
 		}
 	}
 
-	React.useEffect(() => {
+	props.onInput = e => {
+		let code = e.target.textContent
+
+		// Get and save cursor position
+		if(!selection.anchorNode) return 0
+
+		let range = new Range
+		range.setStart(ref.current, 0)
+		range.setEnd(selection.anchorNode, selection.anchorOffset)
+
+		pos.current = range.toString().length
+
+		onChange(code)
+	}
+
+	React.useLayoutEffect(() => {
+		// Set cursor position
 		let p = pos.current
 		let child = ref.current.firstChild
 		while(p > 0) {
@@ -52,7 +62,7 @@ export default React.forwardRef(function CodeEditor({value, onChange, highlight,
 	}, [value])
 
 	return <code {...props}
-		ref={ref}
+		ref={forwardedRef}
 		contentEditable={!readOnly}
 		spellCheck='false'
 		dangerouslySetInnerHTML={{__html: highlight(value)}}
