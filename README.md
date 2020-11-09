@@ -5,30 +5,46 @@
 
 #### Usage example (with prismjs)
 ```jsx
+import React from 'react'
 import CodeEditor from 'rmce'
-// editor theme
-import 'rmce/index.css'
-import Prism from 'prismjs'
+
 // add jsx language support
 import 'prismjs/components/prism-jsx'
-import React from 'react'
+
+// editor theme
+import 'rmce/index.css'
 
 function MyFancyEditor() {
 	let [code, setCode] = React.useState('<div>test</div>')
 	return <CodeEditor
-		className='code-editor'
-		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
-		value={code}
+		className='rmce'
+		language='jsx'
 		onChange={setCode}
-		readOnly
+		value={code}
 		/>
 }
 ```
 
 #### Props
 
-- `value` (String): Current value of the editor i.e. the code to display. This must be a controlled prop
-- `children` (String): Provide value as children
-- `onChange` (Function): Callback which is called when the value of the editor changes
-- `highlight` (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs
-- `readOnly` (Boolean): Disables code editing
+```ts
+class Props {
+	// Current value of the editor i.e. the code to display
+	children: string = ''
+	value: string = this.children
+
+	// Callback which is called when the value of the editor changes
+	onChange(): void
+
+	// Specifies the syntax language for prismjs
+	language: string | null = ''
+
+	// Specifies the ability to edit
+	readOnly: boolean = false
+
+	// Callback which will receive code to highlight
+	highlight(code: string): string {
+		return language? Prism.highlight(code, Prism.languages[language]) : code
+	}
+}
+```

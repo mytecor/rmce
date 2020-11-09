@@ -1,17 +1,27 @@
 
 import React from 'react'
+import Prism from 'prismjs'
 
 let selection = document.getSelection()
 
-function combineRefs(...args) {
-	return node => args.map(arg => arg && (typeof arg == 'object'? arg.current = node : arg(node)))
-}
 
-export default React.forwardRef(({children = '', value = children, onChange = () => {}, highlight, readOnly = false, ...props}, forwardedRef) => {
+export default React.forwardRef(function Editor({
+	children = '',
+	value = children,
+	onChange,
+	highlight = code => language? Prism.highlight(code, Prism.languages[language]) : code,
+	readOnly = false,
+	language,
+	...props
+}, forwardedRef) {
 	let pos = React.useRef(0)
 
 	let ref = React.useRef()
-	forwardedRef = combineRefs(ref, forwardedRef)
+
+	function innerRef(node) {
+		ref.current = node
+		if(forwardedRef) typeof forwardedRef == 'function'? forwardedRef.current = node : forwardedRef(node)
+	}
 
 	props.onKeyDown = e => {
 		let ch = e.key
@@ -41,7 +51,7 @@ export default React.forwardRef(({children = '', value = children, onChange = ()
 
 		pos.current = range.toString().length
 
-		onChange(code)
+		if(onChange) onChange(code)
 	}
 
 	React.useLayoutEffect(() => {
@@ -61,10 +71,10 @@ export default React.forwardRef(({children = '', value = children, onChange = ()
 		}
 	}, [value])
 
-	return <code {...props}
-		ref={forwardedRef}
-		contentEditable={!readOnly}
+	return <code
 		spellCheck='false'
+		contentEditable={!readOnly}
 		dangerouslySetInnerHTML={{__html: highlight(value)}}
+		ref={innerRef} {...props}
 		/>
 })

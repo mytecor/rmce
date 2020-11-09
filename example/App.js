@@ -6,39 +6,43 @@ import '../src/index.styl'
 import './main.styl'
 import CodeEditor from '../src'
 
-import Prism from 'prismjs'
 import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-jsx'
 
-function Example(props) {
-	let [code, setCode] = React.useState(`import CodeEditor from 'rmce'
-// editor theme
-import 'rmce/index.css'
-import Prism from 'prismjs'
+function MainUsageExample() {
+	let [code, setCode] = React.useState(`import React from 'react'
+import CodeEditor from 'rmce'
+
 // add jsx language support
 import 'prismjs/components/prism-jsx'
-import React from 'react'
+
+// editor theme
+import 'rmce/index.css'
 
 function MyFancyEditor() {
 	let [code, setCode] = React.useState('<div>test</div>')
 	return <CodeEditor
-		className='code-editor'
-		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
-		value={code}
+		className='rmce'
+		language='jsx'
 		onChange={setCode}
+		value={code}
 		/>
 }`)
 
-	return <CodeEditor
-		className='code-editor'
-		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
-		value={code}
-		onChange={setCode}
-		/>
+	return <>
+		<h3>Usage example:</h3>
+		<CodeEditor
+			className='rmce'
+			language='jsx'
+			value={code}
+			onChange={setCode}
+			/>
+	</>
 }
 
-function Code({children, lang}) {
-	return <CodeEditor readOnly className={'code-editor'} highlight={() => lang? Prism.highlight(children, Prism.languages[lang]) : children}/>
+function Code({lang, ...props}) {
+	return <CodeEditor className='rmce wrap' readOnly language={lang} {...props}/>
 }
 
 ReactDOM.render(<>
@@ -47,20 +51,31 @@ ReactDOM.render(<>
 		<p>React mini code editor</p>
 		<a href='https://github.com/midnightcoder-pro/rmce'>github</a>
 	</header>
-	<p>Install</p>
+	<h3>Install:</h3>
 	<div id='install'>
 		<Code lang='bash'>yarn add rmce</Code>
-		<Code lang='bash'>npm install rmce</Code>
+		<Code lang='bash'>npm add rmce</Code>
 	</div>
-	<p>Usage example (with prismjs)</p>
-	<Example/>
-	
-	<p>Props</p>
-	<ul id='props'>
-		<li><Code>value</Code> (String): Current value of the editor i.e. the code to display. This must be a controlled prop</li>
-		<li><Code>children</Code> (String): Provide value as children</li>
-		<li><Code>onChange</Code> (Function): Callback which is called when the value of the editor changes</li>
-		<li><Code>highlight</Code> (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs</li>
-		<li><Code>readOnly</Code> (Boolean): Disables code editing</li>
-	</ul>
+	<MainUsageExample/>
+
+	<h3>Props:</h3>
+	<Code lang='ts'>{`class Props {
+	// Current value of the editor i.e. the code to display
+	children: string = ''
+	value: string = this.children
+
+	// Callback which is called when the value of the editor changes
+	onChange(): void
+
+	// Specifies the syntax language for prismjs
+	language: string | null = ''
+
+	// Specifies the ability to edit
+	readOnly: boolean = false
+
+	// Callback which will receive code to highlight
+	highlight(code: string): string {
+		return language? Prism.highlight(code, Prism.languages[language]) : code
+	}
+}`}</Code>
 </>, document.getElementById('root'))
