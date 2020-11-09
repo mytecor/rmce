@@ -31,7 +31,7 @@ function MyFancyEditor() {
 }`)
 
 	return <>
-		<h3>Usage example:</h3>
+		<h3>Usage example (editable):</h3>
 		<CodeEditor
 			className='rmce'
 			language='jsx'

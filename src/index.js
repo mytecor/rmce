@@ -8,7 +8,7 @@ let selection = document.getSelection()
 export default React.forwardRef(function Editor({
 	children = '',
 	value = children,
-	onChange,
+	onChange = () => {},
 	highlight = code => language? Prism.highlight(code, Prism.languages[language]) : code,
 	readOnly = false,
 	language,
@@ -51,7 +51,7 @@ export default React.forwardRef(function Editor({
 
 		pos.current = range.toString().length
 
-		if(onChange) onChange(code)
+		onChange(code)
 	}
 
 	React.useLayoutEffect(() => {
