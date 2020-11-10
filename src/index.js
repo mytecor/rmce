@@ -5,11 +5,13 @@ import Prism from 'prismjs'
 let selection = document.getSelection()
 
 
+let escapeHTML = html => html.replace(/</g, '&lt;')
+
 export default React.forwardRef(function Editor({
 	children = '',
 	value = children,
 	onChange = () => {},
-	highlight = code => language? Prism.highlight(code, Prism.languages[language]) : code,
+	highlight = code => language? Prism.highlight(code, Prism.languages[language]) : escapeHTML(code),
 	readOnly = false,
 	language,
 	...props
