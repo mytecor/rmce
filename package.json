@@ -1,6 +1,6 @@
 {
   "name": "rmce",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "React mini code editor",
   "main": "./index.js",
   "author": "Vlad Afonin <mytecor@ya.ru>",
