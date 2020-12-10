@@ -1,7 +1,7 @@
 # rmce
 ###### React mini code editor
 
-[In action](https://midnightcoder-pro.github.io/rmce)
+[In action](https://mytecor.github.io/rmce)
 
 #### Usage example (with prismjs)
 ```jsx
@@ -46,5 +46,4 @@ class Props {
 	highlight(code: string): string {
 		return language? Prism.highlight(code, Prism.languages[language]) : code
 	}
-}
 ```

@@ -1,2 +1,2 @@
 
-export { default } from '../'
+export { default, CodeEditor, Code } from '../'

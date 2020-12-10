@@ -18,12 +18,12 @@ import CodeEditor from 'rmce'
 import 'prismjs/components/prism-jsx'
 
 // editor theme
-import 'rmce/index.css'
+import style from 'rmce/index.css'
 
 function MyFancyEditor() {
 	let [code, setCode] = React.useState('<div>test</div>')
 	return <CodeEditor
-		className='rmce'
+		className={style.rmce}
 		language='jsx'
 		onChange={setCode}
 		value={code}
@@ -33,7 +33,6 @@ function MyFancyEditor() {
 	return <>
 		<h3>Usage example (editable):</h3>
 		<CodeEditor
-			className='rmce'
 			language='jsx'
 			value={code}
 			onChange={setCode}
@@ -49,7 +48,7 @@ ReactDOM.render(<>
 	<header>
 		<h1>rmce</h1>
 		<p>React mini code editor</p>
-		<a href='https://github.com/midnightcoder-pro/rmce'>github</a>
+		<a href='https://github.com/mytecor/rmce'>github</a>
 	</header>
 	<h3>Install:</h3>
 	<div id='install'>

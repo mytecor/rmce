@@ -4,16 +4,16 @@ import Prism from 'prismjs'
 
 let selection = document.getSelection()
 
-
 let escapeHTML = html => html.replace(/</g, '&lt;')
 
-export default React.forwardRef(function Editor({
+export let CodeEditor = React.forwardRef(function CodeEditor({
 	children = '',
 	value = children,
 	onChange = () => {},
 	highlight = code => language? Prism.highlight(code, Prism.languages[language]) : escapeHTML(code),
 	readOnly = false,
 	language,
+	className = 'rmce',
 	...props
 }, forwardedRef) {
 	let pos = React.useRef(0)
@@ -26,29 +26,32 @@ export default React.forwardRef(function Editor({
 	}
 
 	props.onKeyDown = e => {
-		let ch = e.key
+		let ch
 
-		if(ch == 'Tab' || ch == 'Enter') {
-			e.preventDefault()
-			if(ch == 'Tab') ch = '\t'
-			if(ch == 'Enter') ch = '\n'
+		if(e.key == 'Tab') ch = '\t'
+		if(e.key == 'Enter') ch = '\n'
 
-			// Insert char
-			let range = selection.getRangeAt(0)
-			range.deleteContents()
-			range.insertNode(new Text(ch))
-			range.collapse()
-		}
+		if(!ch) return
+		e.preventDefault()
+
+		// Insert char
+		let range = selection.getRangeAt(0)
+		range.deleteContents()
+		range.insertNode(new Text(ch))
+		range.collapse()
+
+		props.onInput()
 	}
 
-	props.onInput = e => {
-		let code = e.target.textContent
+	props.onInput = () => {
+		let target = ref.current
+		let code = target.textContent
 
 		// Get and save cursor position
-		if(!selection.anchorNode) return 0
+		if(!selection.anchorNode) return
 
 		let range = new Range
-		range.setStart(ref.current, 0)
+		range.setStart(target, 0)
 		range.setEnd(selection.anchorNode, selection.anchorOffset)
 
 		pos.current = range.toString().length
@@ -57,9 +60,11 @@ export default React.forwardRef(function Editor({
 	}
 
 	React.useLayoutEffect(() => {
+		console.log(123)
 		// Set cursor position
 		let p = pos.current
 		let child = ref.current.firstChild
+
 		while(p > 0) {
 			let length = child.textContent.length
 			if(p > length) {
@@ -76,7 +81,13 @@ export default React.forwardRef(function Editor({
 	return <code
 		spellCheck='false'
 		contentEditable={!readOnly}
-		dangerouslySetInnerHTML={{__html: highlight(value)}}
+		dangerouslySetInnerHTML={{__html: highlight(value) + '<br>'}}
+		className={className}
 		ref={innerRef} {...props}
 		/>
 })
+
+export default CodeEditor
+export function Code(props) {
+	return <CodeEditor readOnly {...props}/>
+}
