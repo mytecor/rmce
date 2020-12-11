@@ -60,7 +60,6 @@ export let CodeEditor = React.forwardRef(function CodeEditor({
 	}
 
 	React.useLayoutEffect(() => {
-		console.log(123)
 		// Set cursor position
 		let p = pos.current
 		let child = ref.current.firstChild
